@@ -1,0 +1,12 @@
+{
+  "name": "lend-new",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Static landing site served from the repository root.",
+  "scripts": {
+    "start": "sh -c 'npx serve -s . -l tcp://0.0.0.0:${PORT:-3000}'"
+  },
+  "dependencies": {
+    "serve": "^14.2.4"
+  }
+}

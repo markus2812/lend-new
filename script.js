@@ -1,19 +1,10 @@
 const currentYear = document.getElementById("current-year");
 const faqItems = Array.from(document.querySelectorAll(".faq-item"));
-const activityToast = document.getElementById("activity-toast");
-const activityText = document.getElementById("activity-text");
 const certificateSlides = Array.from(document.querySelectorAll(".certificate-slide"));
 const certificateControls = Array.from(document.querySelectorAll(".certificate-control"));
 const swipeIndicators = Array.from(document.querySelectorAll("[data-swipe-indicator]"));
 const mobileMenuToggle = document.querySelector(".mobile-menu-toggle");
 const mobileMenu = document.getElementById("mobile-menu");
-
-const activityMessages = [
-  "18 минут назад клиент из Германии оставил случай по заблокированному выводу",
-  "32 минуты назад подготовили список документов для обращения в банк",
-  "Сегодня уже 7 человек запросили первичный разбор по брокерам и списаниям",
-  "11 минут назад клиентка из Польши уточнила маршрут по chargeback-случаю",
-];
 
 if (currentYear) {
   currentYear.textContent = new Date().getFullYear();
@@ -73,8 +64,8 @@ attachLeadHandler("hero-form", "hero-form-feedback", (formData) => {
   const firstName = typeof fullName === "string" ? fullName.trim().split(/\s+/)[0] : "";
 
   return firstName
-    ? `${firstName}, спасибо. Заявка принята в обработку.`
-    : "Спасибо. Заявка принята в обработку.";
+    ? `${firstName}, спасибо. Мы получили заявку и скоро свяжемся с вами.`
+    : "Спасибо. Мы получили заявку и скоро свяжемся с вами.";
 });
 
 attachLeadHandler("lead-form", "form-feedback", (formData) => {
@@ -82,8 +73,8 @@ attachLeadHandler("lead-form", "form-feedback", (formData) => {
   const firstName = typeof fullName === "string" ? fullName.trim().split(/\s+/)[0] : "";
 
   return firstName
-    ? `${firstName}, спасибо. Заявка принята в обработку.`
-    : "Спасибо. Заявка принята в обработку.";
+    ? `${firstName}, спасибо. Мы получили заявку и скоро свяжемся с вами.`
+    : "Спасибо. Мы получили заявку и скоро свяжемся с вами.";
 });
 
 if (faqItems.length > 0) {
@@ -100,24 +91,6 @@ if (faqItems.length > 0) {
       });
     });
   });
-}
-
-if (activityToast && activityText && activityMessages.length > 0) {
-  let activityIndex = 0;
-
-  const showActivity = () => {
-    activityText.textContent = activityMessages[activityIndex];
-    activityToast.classList.add("is-visible");
-
-    window.setTimeout(() => {
-      activityToast.classList.remove("is-visible");
-    }, 6200);
-
-    activityIndex = (activityIndex + 1) % activityMessages.length;
-  };
-
-  window.setTimeout(showActivity, 2200);
-  window.setInterval(showActivity, 14000);
 }
 
 if (certificateSlides.length > 0 && certificateControls.length === certificateSlides.length) {
