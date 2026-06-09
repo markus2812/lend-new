@@ -14,7 +14,7 @@
       href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&family=Oswald:wght@500;600;700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="styles.css?v=mobile-menu-3" />
+    <link rel="stylesheet" href="styles.css?v=center-section-headings-1" />
   </head>
   <body id="top" class="has-fixed-header">
     <header class="site-header">
@@ -31,11 +31,11 @@
 
         <nav class="header-nav">
           <a href="#services">Услуги</a>
-          <a href="#faq">Вопросы и ответы</a>
-          <a href="#contact">Контакты</a>
+          <a href="#process">Процесс</a>
+          <a href="#faq">FAQ</a>
         </nav>
 
-        <a class="header-cta" href="#contact">Первая оценка бесплатно</a>
+        <a class="header-cta" href="#top" data-open-lead-modal>Оставить заявку</a>
         <button
           class="mobile-menu-toggle"
           type="button"
@@ -52,8 +52,8 @@
       <nav class="mobile-menu" id="mobile-menu" aria-label="Мобильное меню">
         <a href="#top">На главную</a>
         <a href="#services">Услуги</a>
-        <a href="#faq">Вопросы и ответы</a>
-        <a href="#contact">Контакты</a>
+        <a href="#process">Процесс</a>
+        <a href="#faq">FAQ</a>
       </nav>
     </header>
 
@@ -61,14 +61,13 @@
       <section class="hero-section" id="hero">
         <img
           class="hero-bg"
-          src="assets/hero-eu-chargeback-dark.png"
+          src="assets/hero-eu-chargeback-branded.png"
           alt="Современное европейское офисное здание с флагами ЕС"
         />
         <div class="hero-overlay"></div>
 
         <div class="container hero-content">
           <div class="hero-copy">
-            <span class="hero-kicker">Если просят доплатить перед выводом, не переводите новые деньги</span>
             <h1>
               <span class="title-line">Не можете</span>
               <span class="title-line">вывести деньги</span>
@@ -85,70 +84,30 @@
             </p>
 
             <ul class="hero-list">
-              <li>Объясним простыми словами, можно ли вернуть деньги через банк или другим официальным способом</li>
+              <li>Объясним простыми словами, какой официальный путь к возврату выглядит реалистичным</li>
               <li>Подскажем, какие документы лучше собрать сразу, а что можно отправить позже</li>
               <li>Поможем не сделать лишних платежей и не попасть на повторный обман</li>
             </ul>
 
             <div class="hero-actions">
-              <a class="button button-primary" href="#contact">Получить первую оценку</a>
+              <a class="button button-primary" href="#top" data-open-lead-modal>Оставить заявку</a>
               <a class="button button-link" href="#process">Посмотреть первые шаги</a>
-            </div>
-
-            <div class="hero-trust" aria-label="Что важно знать до обращения">
-              <span class="trust-chip">Не обещаем возврат заранее</span>
-              <span class="trust-chip">Не просим переводить деньги вперёд</span>
-              <span class="trust-chip">Для начала достаточно суммы и названия платформы</span>
             </div>
           </div>
 
-          <aside class="hero-panel">
-            <div class="hero-panel-topline">Быстрая оценка ситуации</div>
-            <h2>Спокойно разберём вашу ситуацию за 15 минут</h2>
-            <p>
-              Оставьте контакты и сумму потерь. Мы скажем, насколько срочная ситуация, есть ли
-              смысл обращаться в банк и какие документы лучше подготовить в первую очередь.
-            </p>
-
-            <form class="hero-form" id="hero-form">
-              <label class="form-field">
-                <span class="form-label">Имя и фамилия</span>
-                <input type="text" name="full-name" placeholder="Например: Иван Петров" autocomplete="name" required />
-              </label>
-              <label class="form-field">
-                <span class="form-label">Электронная почта</span>
-                <input type="email" name="email" placeholder="Например: ivan@email.com" autocomplete="email" required />
-              </label>
-              <label class="form-field">
-                <span class="form-label">Телефон</span>
-                <input type="tel" name="phone" placeholder="Например: +49 170 123 45 67" autocomplete="tel" required />
-              </label>
-              <label class="form-field">
-                <span class="form-label">Сумма потерь</span>
-                <select name="amount" required>
-                  <option value="" selected disabled>Выберите сумму</option>
-                  <option value="0-1000 EUR">0-1000 EUR</option>
-                  <option value="1000-10000 EUR">1000-10000 EUR</option>
-                  <option value="10000+ EUR">10000+ EUR</option>
-                </select>
-              </label>
-              <p class="form-prompt">Ничего оплачивать заранее не нужно. Для начала достаточно суммы потерь и названия платформы.</p>
-              <button class="button button-primary button-full" type="submit">
-                Получить первую оценку
-              </button>
-              <p class="form-feedback" id="hero-form-feedback" aria-live="polite"></p>
-            </form>
-          </aside>
         </div>
       </section>
 
       <section class="feature-strip">
+        <div class="container feature-title">
+          <h2>Что вы получаете после обращения</h2>
+        </div>
         <div class="container feature-grid">
           <article class="feature-card">
             <div class="feature-icon">01</div>
             <div>
               <h2>Быстро понимаем, с чего начать</h2>
-              <p>Сразу объясняем, когда стоит обращаться в банк, а когда нужен другой официальный способ.</p>
+              <p>Сразу объясняем, какой официальный путь к возврату подходит именно для вашей ситуации.</p>
             </div>
           </article>
           <article class="feature-card">
@@ -162,7 +121,7 @@
             <div class="feature-icon">03</div>
             <div>
               <h2>Документы в понятном виде</h2>
-              <p>Помогаем собрать выписки, переписку, скриншоты и порядок событий по датам так, чтобы банку всё было ясно.</p>
+              <p>Помогаем собрать выписки, переписку, скриншоты и порядок событий по датам так, чтобы контролирующим органам всё было ясно.</p>
             </div>
           </article>
           <article class="feature-card">
@@ -184,7 +143,6 @@
       <section class="services-section" id="services">
         <div class="container">
           <div class="section-title">
-            <span class="section-kicker">С чем помогаем</span>
             <h2>Разбираем случаи, где деньги зависли, списались или не возвращаются</h2>
           </div>
 
@@ -232,10 +190,10 @@
               </div>
               <div class="service-body">
                 <span class="service-index">03</span>
-                <h3>Списания с карты и повторные платежи</h3>
+                <h3>Криптовалютные и международные переводы</h3>
                 <p>
-                  Если деньги списали без понятного согласия, подписку не отключают или сумма
-                  списания отличается от обещанной.
+                  Если средства переводились через криптокошелёк, обменник, SEPA/SWIFT или
+                  карту на зарубежного получателя, поможем собрать цепочку платежей и доказательств.
                 </p>
               </div>
             </article>
@@ -244,15 +202,15 @@
               <div class="service-media">
                 <img
                   src="assets/service-rebuttal.png"
-                  alt="Помощь с ответом банку и возражениями компании"
+                  alt="Помощь с ответом контролирующим органам и возражениями компании"
                 />
               </div>
               <div class="service-body">
                 <span class="service-index">04</span>
-                <h3>Помощь с ответом банку</h3>
+                <h3>Ответ контролирующим органам</h3>
                 <p>
-                  Если банк запросил дополнительные документы или компания возражает против
-                  возврата, поможем подготовить понятный ответ по делу.
+                  Если запросили дополнительные документы или компания возражает против возврата,
+                  поможем подготовить понятный ответ по делу.
                 </p>
               </div>
             </article>
@@ -269,7 +227,6 @@
       <section class="alert-section">
         <div class="container">
           <div class="section-title section-title-centered">
-            <span class="section-kicker">Важно увидеть сразу</span>
             <h2>Если видите один из этих признаков — действовать нужно быстро</h2>
           </div>
 
@@ -281,7 +238,7 @@
             </article>
             <article class="alert-card">
               <span class="alert-index">02</span>
-              <h3>Запрещают обращаться в банк</h3>
+              <h3>Запрещают обращаться за проверкой</h3>
               <p>Если менеджер просит молчать, удалить переписку или “не портить процесс”, это тревожный сигнал.</p>
             </article>
             <article class="alert-card">
@@ -307,7 +264,6 @@
       <section class="process-section" id="process">
         <div class="container">
           <div class="section-title section-title-centered">
-            <span class="section-kicker">Как это работает</span>
             <h2>Что будет после обращения</h2>
           </div>
 
@@ -320,7 +276,7 @@
             <article class="process-step">
               <span class="process-number">2</span>
               <h3>Выбираем подходящий способ</h3>
-              <p>Определяем, можно ли добиваться возврата через банк, подать жалобу или использовать другой официальный вариант.</p>
+              <p>Определяем, через какой официальный канал лучше добиваться возврата: платёжный спор, жалоба, претензия или другой вариант.</p>
             </article>
             <article class="process-step">
               <span class="process-number">3</span>
@@ -334,8 +290,8 @@
             </article>
             <article class="process-step">
               <span class="process-number">5</span>
-              <h3>Следующие действия</h3>
-              <p>Объясняем, что делать дальше, какие сроки важны и каких платежей точно стоит избегать.</p>
+              <h3>План возврата и сопровождение</h3>
+              <p>Показываем ближайший путь к возврату, фиксируем сроки и объясняем, каких платежей точно стоит избегать.</p>
             </article>
           </div>
           <div class="swipe-indicator" data-swipe-indicator>
@@ -351,7 +307,6 @@
       <section class="proof-section" id="proof">
         <div class="container">
           <div class="section-title">
-            <span class="section-kicker">Блок доверия</span>
             <h2>Почему важно сначала разобраться, а потом действовать</h2>
           </div>
 
@@ -366,10 +321,10 @@
             </article>
             <article class="testimonial-card">
               <span class="testimonial-tag">Частая ситуация</span>
-              <h3>Случай: банк просит дополнительные документы</h3>
+              <h3>Случай: запрашивают дополнительные документы</h3>
               <p>
-                Помогаем собрать факты в понятный пакет, чтобы не отправлять банку разрозненные
-                скриншоты и эмоции.
+                Помогаем собрать факты в понятный пакет, чтобы не отправлять контролирующим
+                органам разрозненные скриншоты и эмоции.
               </p>
             </article>
             <article class="testimonial-card">
@@ -387,7 +342,6 @@
       <section class="certificates-section" id="certificates">
         <div class="container certificates-layout">
           <div class="section-title">
-            <span class="section-kicker">Подход и стандарты</span>
             <h2>Наш подход можно проверить ещё до обращения</h2>
           </div>
 
@@ -420,25 +374,24 @@
       <section class="faq-section" id="faq">
         <div class="container faq-layout">
           <div class="section-title">
-            <span class="section-kicker">Вопросы и ответы</span>
             <h2>Что обычно спрашивают перед обращением</h2>
           </div>
 
           <div class="faq-list">
             <details class="faq-item">
-              <summary>Вы точно вернёте деньги?</summary>
+              <summary>Какие реальные шансы на возврат?</summary>
               <p>
-                Нет. Гарантировать возврат не может никто: решение принимает банк, платёжная
-                система или другой участник процедуры. Мы помогаем оценить шансы, собрать
-                доказательства и понять, какой способ действий подходит именно вам.
+                После первичного разбора мы показываем рабочий путь к возврату: какие доказательства
+                нужны, куда обращаться и что усиливает позицию. Юридически обещать результат заранее
+                нельзя, но правильно собранный пакет заметно повышает шансы.
               </p>
             </details>
             <details class="faq-item">
-              <summary>Сколько времени важно не терять?</summary>
+              <summary>Когда лучше начинать проверку?</summary>
               <p>
-                Чем раньше вы зафиксируете платежи, переписку и сайт платформы, тем лучше. По
-                картам и банковским обращениям сроки могут быть ограничены, поэтому тянуть с
-                первой оценкой ситуации не стоит.
+                Лучше начинать сразу после отказа в выводе, требования доплаты или блокировки
+                кабинета. Чем раньше зафиксированы платежи, переписка, сайт платформы и реквизиты,
+                тем проще подготовить сильное обращение.
               </p>
             </details>
             <details class="faq-item">
@@ -459,46 +412,6 @@
         </div>
       </section>
 
-      <section class="contact-section" id="contact">
-        <div class="container contact-panel">
-          <div class="contact-copy">
-            <span class="section-kicker">Бесплатная оценка ситуации</span>
-            <h2>Получите спокойную первую оценку ситуации</h2>
-            <p>
-              Оставьте контакты и сумму потерь. Мы скажем, есть ли смысл начинать возврат,
-              какие документы понадобятся и чего сейчас лучше не делать.
-            </p>
-
-          </div>
-
-          <form class="contact-form" id="lead-form">
-            <label class="form-field">
-              <span class="form-label">Имя и фамилия</span>
-              <input type="text" name="full-name" placeholder="Например: Иван Петров" autocomplete="name" required />
-            </label>
-            <label class="form-field">
-              <span class="form-label">Электронная почта</span>
-              <input type="email" name="email" placeholder="Например: ivan@email.com" autocomplete="email" required />
-            </label>
-            <label class="form-field">
-              <span class="form-label">Телефон</span>
-              <input type="tel" name="phone" placeholder="Например: +49 170 123 45 67" autocomplete="tel" required />
-            </label>
-            <label class="form-field">
-              <span class="form-label">Сумма потерь</span>
-              <select name="amount" required>
-                <option value="" selected disabled>Выберите сумму</option>
-                <option value="0-1000 EUR">0-1000 EUR</option>
-                <option value="1000-10000 EUR">1000-10000 EUR</option>
-                <option value="10000+ EUR">10000+ EUR</option>
-              </select>
-            </label>
-            <p class="form-prompt">Ничего оплачивать заранее не нужно. После заявки вы получите первую оценку и список следующих шагов.</p>
-            <button class="button button-primary button-full" type="submit">Получить первую оценку</button>
-            <p class="form-feedback" id="form-feedback" aria-live="polite"></p>
-          </form>
-        </div>
-      </section>
     </main>
 
     <footer class="site-footer">
@@ -514,8 +427,8 @@
             </span>
           </a>
           <p>
-            Помогаем русскоязычным клиентам в Европе оценить шансы на возврат, собрать нужные
-            документы и понять, как лучше действовать дальше.
+            Работаем с клиентами из стран ЕС, кроме граждан Украины, Сербии и Косово: оцениваем путь к возврату, собираем
+            доказательства и помогаем действовать без хаоса.
           </p>
         </div>
 
@@ -523,21 +436,20 @@
           <h3>Навигация</h3>
           <a href="#hero">Главная</a>
           <a href="#services">Услуги</a>
-          <a href="#faq">Вопросы и ответы</a>
+          <a href="#faq">FAQ</a>
         </div>
 
         <div class="footer-column">
           <h3>Контакты</h3>
-          <a href="tel:+31208085314">+31 20 808 53 14</a>
           <a href="mailto:office@meridianrecoverydesk.com">office@meridianrecoverydesk.com</a>
-          <span>Keizersgracht 482, 1017 EG Amsterdam, Netherlands</span>
-          <a href="#contact">Получить первую оценку</a>
+          <span>World Trade Center Amsterdam, Strawinskylaan 1, 1077 XW Amsterdam, Netherlands</span>
+          <a href="#top" data-open-lead-modal>Оставить заявку</a>
         </div>
 
         <div class="footer-column footer-help">
           <h3>Нужна помощь?</h3>
-          <span>Получите первую оценку ситуации и понятный список следующих шагов.</span>
-          <a class="footer-action" href="#lead-form">Связаться</a>
+          <span>Оставьте заявку и получите понятный список следующих шагов.</span>
+          <a class="footer-action" href="#top" data-open-lead-modal>Связаться</a>
         </div>
       </div>
 
@@ -550,9 +462,77 @@
       </div>
     </footer>
 
-    <a class="floating-cta" href="#lead-form">Получить первую оценку</a>
-    <a class="mobile-cta" href="#lead-form">Получить первую оценку</a>
+    <a class="floating-cta" href="#top" data-open-lead-modal>
+      <span class="floating-cta-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" focusable="false">
+          <path d="m22 2-7 20-4-9-9-4Z" />
+          <path d="M22 2 11 13" />
+        </svg>
+      </span>
+      <span>Оставить заявку</span>
+    </a>
+    <a class="mobile-cta" href="#top" data-open-lead-modal>Оставить заявку</a>
 
-    <script src="script.js?v=case-word-1"></script>
+    <div class="lead-modal" id="lead-modal" aria-hidden="true">
+      <div class="lead-modal-backdrop" data-close-lead-modal></div>
+      <section class="lead-modal-dialog" role="dialog" aria-modal="true" aria-labelledby="lead-modal-title">
+        <button class="lead-modal-close" type="button" aria-label="Закрыть окно" data-close-lead-modal>×</button>
+        <span class="section-kicker">Бесплатная оценка ситуации</span>
+        <h2 id="lead-modal-title">Оставьте заявку по возврату</h2>
+        <p>
+          Оставьте данные для разбора. Мы работаем с клиентами из стран ЕС, кроме граждан Украины, Сербии и Косово, и
+          принимаем заявки по суммам от 1 000 EUR.
+        </p>
+        <form class="contact-form lead-capture-form" id="modal-form">
+          <label class="form-field">
+            <span class="form-label">Ваше имя *</span>
+            <input type="text" name="full-name" placeholder="Введите ваше имя" autocomplete="name" required />
+          </label>
+          <label class="form-field">
+            <span class="form-label">Email *</span>
+            <input type="email" name="email" placeholder="your@email.com" autocomplete="email" required />
+          </label>
+          <label class="form-field">
+            <span class="form-label">Телефон *</span>
+            <input type="tel" name="phone" placeholder="+49 151 23456789" autocomplete="tel" required />
+          </label>
+          <label class="form-field">
+            <span class="form-label">Сумма потери *</span>
+            <select name="amount" required>
+              <option value="" selected disabled>Выберите сумму</option>
+              <option value="1000-10000 EUR">1.000-10.000€</option>
+              <option value="10000-30000 EUR">10.000-30.000€</option>
+              <option value="30000-50000 EUR">30.000-50.000€</option>
+              <option value="50000-100000+ EUR">50.000-100.000€+</option>
+            </select>
+          </label>
+          <label class="form-field form-field-wide">
+            <span class="form-label">Опишите вашу ситуацию (необязательно)</span>
+            <textarea name="situation" placeholder="Когда случилось, название брокера..." rows="4"></textarea>
+          </label>
+          <label class="form-check form-field-wide">
+            <input type="checkbox" name="ready-call" required />
+            <span>Я готов(а) принять звонок для консультации</span>
+          </label>
+          <label class="form-check form-field-wide">
+            <input type="checkbox" name="ready-russian" required />
+            <span>Я готов(а) общаться на русском языке</span>
+          </label>
+          <div class="restriction-notice form-field-wide" role="note">
+            <p>Услуги временно недоступны для граждан следующих стран. Мы стараемся в ближайшее время исправить это:</p>
+            <div class="country-badges" aria-label="Страны, по которым заявки временно не принимаются">
+              <span><i class="flag flag-ua" aria-hidden="true"></i> Украина</span>
+              <span><i class="flag flag-srb" aria-hidden="true"></i> Сербия</span>
+              <span><i class="flag flag-xk" aria-hidden="true"></i> Косово</span>
+            </div>
+          </div>
+          <button class="button button-primary button-full form-field-wide" type="submit">Отправить заявку</button>
+          <p class="form-policy form-field-wide">Нажимая кнопку, вы соглашаетесь с <a href="privacy.html" target="_blank" rel="noopener">политикой конфиденциальности</a></p>
+          <p class="form-feedback" id="modal-form-feedback" aria-live="polite"></p>
+        </form>
+      </section>
+    </div>
+
+    <script src="script.js?v=popup-only-form-1"></script>
   </body>
 </html>

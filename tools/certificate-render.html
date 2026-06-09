@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Meridian Recovery Desk Certificate Renderer</title>
+    <style>
+      :root {
+        --ink: #14213a;
+        --muted: #5d6b80;
+        --gold: #b98a19;
+        --blue: #09244a;
+        --paper: #fbf6ea;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        width: 1280px;
+        height: 900px;
+        margin: 0;
+        overflow: hidden;
+        background:
+          radial-gradient(circle at 16% 10%, rgba(255, 255, 255, 0.18), transparent 28%),
+          linear-gradient(135deg, #07152d 0%, #0a2141 45%, #031022 100%);
+        color: var(--ink);
+        font-family: Georgia, "Times New Roman", serif;
+      }
+
+      .stage {
+        display: grid;
+        place-items: center;
+        width: 1280px;
+        height: 900px;
+        padding: 70px 86px;
+      }
+
+      .document {
+        position: relative;
+        width: 1040px;
+        height: 710px;
+        padding: 54px 70px;
+        background:
+          linear-gradient(120deg, rgba(255, 255, 255, 0.7), transparent 36%),
+          repeating-linear-gradient(0deg, rgba(185, 138, 25, 0.035), rgba(185, 138, 25, 0.035) 1px, transparent 1px, transparent 13px),
+          var(--paper);
+        border: 1px solid rgba(185, 138, 25, 0.58);
+        box-shadow: 0 34px 80px rgba(0, 0, 0, 0.38);
+      }
+
+      .document::before,
+      .document::after {
+        content: "";
+        position: absolute;
+        pointer-events: none;
+      }
+
+      .document::before {
+        inset: 22px;
+        border: 2px solid rgba(185, 138, 25, 0.56);
+      }
+
+      .document::after {
+        inset: 34px;
+        border: 1px solid rgba(9, 36, 74, 0.28);
+      }
+
+      .watermark {
+        position: absolute;
+        inset: 0;
+        display: grid;
+        place-items: center;
+        color: rgba(9, 36, 74, 0.055);
+        font-family: Arial, sans-serif;
+        font-size: 118px;
+        font-weight: 900;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        transform: rotate(-18deg);
+      }
+
+      .header,
+      .body,
+      .footer {
+        position: relative;
+        z-index: 1;
+      }
+
+      .header {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 28px;
+        padding-bottom: 26px;
+        border-bottom: 1px solid rgba(9, 36, 74, 0.2);
+      }
+
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        font-family: Arial, sans-serif;
+      }
+
+      .mark {
+        display: grid;
+        place-items: center;
+        width: 56px;
+        height: 56px;
+        border: 2px solid var(--gold);
+        border-radius: 50%;
+        color: var(--gold);
+        font-weight: 900;
+        letter-spacing: -0.08em;
+      }
+
+      .brand strong {
+        display: block;
+        color: var(--blue);
+        font-size: 20px;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .brand span {
+        display: block;
+        margin-top: 4px;
+        color: var(--muted);
+        font-size: 12px;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+      }
+
+      .meta {
+        display: grid;
+        gap: 7px;
+        min-width: 250px;
+        color: var(--muted);
+        font-family: Arial, sans-serif;
+        font-size: 12px;
+        line-height: 1.35;
+        text-align: right;
+      }
+
+      .meta b {
+        color: var(--blue);
+      }
+
+      .body {
+        display: grid;
+        grid-template-columns: 1fr 280px;
+        gap: 48px;
+        padding-top: 42px;
+      }
+
+      .eyebrow {
+        margin: 0 0 12px;
+        color: var(--gold);
+        font-family: Arial, sans-serif;
+        font-size: 13px;
+        font-weight: 800;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+      }
+
+      h1 {
+        margin: 0;
+        color: var(--blue);
+        font-size: 48px;
+        font-weight: 700;
+        line-height: 1.04;
+      }
+
+      .subtitle {
+        margin: 18px 0 0;
+        color: #2a3950;
+        font-size: 21px;
+        line-height: 1.45;
+      }
+
+      .legal-text {
+        display: grid;
+        gap: 12px;
+        margin-top: 26px;
+        color: #384960;
+        font-family: Arial, sans-serif;
+        font-size: 15px;
+        line-height: 1.58;
+      }
+
+      .legal-text p {
+        margin: 0;
+      }
+
+      .side-panel {
+        display: grid;
+        gap: 18px;
+        align-self: stretch;
+        padding: 22px;
+        border: 1px solid rgba(185, 138, 25, 0.36);
+        background: rgba(255, 255, 255, 0.42);
+      }
+
+      .side-panel h2 {
+        margin: 0;
+        color: var(--blue);
+        font-family: Arial, sans-serif;
+        font-size: 15px;
+        letter-spacing: 0.13em;
+        text-transform: uppercase;
+      }
+
+      .checklist {
+        display: grid;
+        gap: 12px;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        color: #384960;
+        font-family: Arial, sans-serif;
+        font-size: 13px;
+        line-height: 1.42;
+      }
+
+      .checklist li {
+        position: relative;
+        padding-left: 22px;
+      }
+
+      .checklist li::before {
+        content: "";
+        position: absolute;
+        top: 5px;
+        left: 0;
+        width: 9px;
+        height: 9px;
+        border: 2px solid var(--gold);
+        border-radius: 50%;
+      }
+
+      .seal {
+        position: absolute;
+        right: 360px;
+        bottom: 64px;
+        display: grid;
+        place-items: center;
+        width: 104px;
+        height: 104px;
+        border: 4px double var(--gold);
+        border-radius: 50%;
+        color: var(--gold);
+        font-family: Arial, sans-serif;
+        font-size: 10px;
+        font-weight: 900;
+        letter-spacing: 0.08em;
+        text-align: center;
+        text-transform: uppercase;
+        background: rgba(255, 255, 255, 0.42);
+        transform: rotate(-8deg);
+      }
+
+      .ribbon {
+        position: absolute;
+        right: 392px;
+        bottom: 28px;
+        width: 42px;
+        height: 58px;
+        background: linear-gradient(90deg, #8b1c25, #d63e39 50%, #8b1c25);
+        clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 74%, 0 100%);
+      }
+
+      .footer {
+        position: absolute;
+        left: 70px;
+        right: 70px;
+        bottom: 56px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 44px;
+        align-items: end;
+      }
+
+      .signature {
+        color: var(--blue);
+      }
+
+      .signature-name {
+        display: block;
+        margin-bottom: 8px;
+        font-size: 24px;
+        font-style: italic;
+      }
+
+      .signature-line {
+        display: block;
+        width: 320px;
+        height: 1px;
+        margin-bottom: 8px;
+        background: rgba(9, 36, 74, 0.44);
+      }
+
+      .signature-role,
+      .office {
+        color: var(--muted);
+        font-family: Arial, sans-serif;
+        font-size: 12px;
+        line-height: 1.45;
+      }
+
+      .office {
+        text-align: right;
+      }
+
+      .variant-blue .document {
+        background:
+          linear-gradient(120deg, rgba(255, 255, 255, 0.74), transparent 36%),
+          linear-gradient(180deg, #f8fbff 0%, #edf4ff 100%);
+      }
+
+      .variant-green .document {
+        background:
+          linear-gradient(120deg, rgba(255, 255, 255, 0.68), transparent 34%),
+          linear-gradient(180deg, #fbfff9 0%, #eef8ed 100%);
+      }
+
+      .variant-charcoal .document {
+        background:
+          linear-gradient(120deg, rgba(255, 255, 255, 0.7), transparent 34%),
+          linear-gradient(180deg, #fffaf0 0%, #f4ead7 100%);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="stage" id="stage"></div>
+
+    <script>
+      const certificates = {
+        case: {
+          variant: "",
+          doc: "MRD-ICR-2026-014",
+          title: "Client Case Review Standard",
+          eyebrow: "Internal Legal Intake Certificate",
+          subtitle: "Confirms the internal protocol for reviewing broker, forex and digital platform recovery cases before formal action.",
+          paragraphs: [
+            "The review standard requires a chronology of events, payment records, platform identifiers and written communication before any recovery route is recommended.",
+            "This certificate describes an internal operating standard. It is not a state licence, court decision or guarantee of financial recovery."
+          ],
+          checks: ["Chronology review", "Payment route mapping", "Evidence completeness", "No upfront recovery guarantee"]
+        },
+        privacy: {
+          variant: "variant-blue",
+          doc: "MRD-DPP-2026-022",
+          title: "Data Protection & Confidentiality",
+          eyebrow: "Legal Data Handling Statement",
+          subtitle: "Confirms the internal rules for receiving, storing and reviewing client materials connected with recovery cases.",
+          paragraphs: [
+            "Client files are handled under a need-to-know workflow with limited access to payment details, correspondence and identity-sensitive materials.",
+            "This statement documents internal data-handling practice and does not replace a formal data processing agreement where one is legally required."
+          ],
+          checks: ["Restricted file access", "Document minimisation", "Secure review workflow", "Client consent before sharing"]
+        },
+        routing: {
+          variant: "variant-green",
+          doc: "MRD-ERP-2026-031",
+          title: "Evidence Routing Protocol",
+          eyebrow: "Recovery Documentation Certificate",
+          subtitle: "Confirms the internal method for preparing evidence packages for payment disputes, complaints and regulator-facing submissions.",
+          paragraphs: [
+            "The protocol separates verified facts, client statements, transaction references and platform materials so the case can be reviewed without confusion.",
+            "This document supports procedural clarity only. Final decisions remain with the competent institution, payment participant or authority."
+          ],
+          checks: ["Verified document list", "Transaction references", "Platform screenshots", "Regulator-ready chronology"]
+        },
+        fraud: {
+          variant: "variant-charcoal",
+          doc: "MRD-AFP-2026-047",
+          title: "Anti-Fraud Prevention Review",
+          eyebrow: "Client Protection Policy Statement",
+          subtitle: "Confirms the internal policy for identifying repeat-payment pressure, false taxes, withdrawal fees and recovery activation schemes.",
+          paragraphs: [
+            "The review flags demands for additional payments before withdrawal, changing wallet details, deleted correspondence requests and pressure tactics.",
+            "The purpose is to reduce secondary losses and strengthen the recovery position. It is not an external accreditation or public authority approval."
+          ],
+          checks: ["Repeat-payment screening", "False fee detection", "Wallet change review", "Secondary loss prevention"]
+        }
+      };
+
+      const requested = new URLSearchParams(window.location.search).get("cert") || "case";
+      const data = certificates[requested] || certificates.case;
+      document.body.className = data.variant;
+
+      document.getElementById("stage").innerHTML = `
+        <article class="document">
+          <div class="watermark">Meridian</div>
+          <header class="header">
+            <div class="brand">
+              <div class="mark">MRD</div>
+              <div>
+                <strong>Meridian Recovery Desk</strong>
+                <span>Compliance Office</span>
+              </div>
+            </div>
+            <div class="meta">
+              <span><b>Document ID:</b> ${data.doc}</span>
+              <span><b>Issued:</b> 04 June 2026</span>
+              <span><b>Jurisdiction focus:</b> European Union client intake</span>
+              <span><b>Office:</b> WTC Amsterdam, Strawinskylaan 1</span>
+            </div>
+          </header>
+
+          <section class="body">
+            <div>
+              <p class="eyebrow">${data.eyebrow}</p>
+              <h1>${data.title}</h1>
+              <p class="subtitle">${data.subtitle}</p>
+              <div class="legal-text">
+                ${data.paragraphs.map((paragraph) => `<p>${paragraph}</p>`).join("")}
+              </div>
+            </div>
+            <aside class="side-panel">
+              <h2>Verified internal controls</h2>
+              <ul class="checklist">
+                ${data.checks.map((item) => `<li>${item}</li>`).join("")}
+              </ul>
+            </aside>
+          </section>
+
+          <div class="ribbon"></div>
+          <div class="seal">Internal<br />Compliance<br />2026</div>
+
+          <footer class="footer">
+            <div class="signature">
+              <span class="signature-name">A. Meridian</span>
+              <span class="signature-line"></span>
+              <span class="signature-role">Compliance Coordinator, Meridian Recovery Desk</span>
+            </div>
+            <div class="office">
+              Meridian Recovery Desk<br />
+              World Trade Center Amsterdam<br />
+              Strawinskylaan 1, 1077 XW Amsterdam, Netherlands
+            </div>
+          </footer>
+        </article>
+      `;
+    </script>
+  </body>
+</html>

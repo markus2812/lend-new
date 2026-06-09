@@ -5,6 +5,9 @@ const certificateControls = Array.from(document.querySelectorAll(".certificate-c
 const swipeIndicators = Array.from(document.querySelectorAll("[data-swipe-indicator]"));
 const mobileMenuToggle = document.querySelector(".mobile-menu-toggle");
 const mobileMenu = document.getElementById("mobile-menu");
+const leadModal = document.getElementById("lead-modal");
+const openLeadModalButtons = Array.from(document.querySelectorAll("[data-open-lead-modal]"));
+const closeLeadModalButtons = Array.from(document.querySelectorAll("[data-close-lead-modal]"));
 
 if (currentYear) {
   currentYear.textContent = new Date().getFullYear();
@@ -41,6 +44,53 @@ if (mobileMenuToggle && mobileMenu) {
   });
 }
 
+if (leadModal && openLeadModalButtons.length > 0) {
+  const modalDialog = leadModal.querySelector(".lead-modal-dialog");
+  let lastFocusedElement = null;
+
+  const setLeadModalOpen = (isOpen) => {
+    leadModal.classList.toggle("is-open", isOpen);
+    leadModal.setAttribute("aria-hidden", String(!isOpen));
+    document.body.classList.toggle("has-open-modal", isOpen);
+
+    if (isOpen) {
+      lastFocusedElement = document.activeElement;
+      window.setTimeout(() => {
+        const firstInput = leadModal.querySelector("input, select, button");
+        firstInput?.focus();
+      }, 80);
+      return;
+    }
+
+    if (lastFocusedElement instanceof HTMLElement) {
+      lastFocusedElement.focus();
+    }
+  };
+
+  openLeadModalButtons.forEach((button) => {
+    button.addEventListener("click", (event) => {
+      event.preventDefault();
+      setLeadModalOpen(true);
+    });
+  });
+
+  closeLeadModalButtons.forEach((button) => {
+    button.addEventListener("click", () => setLeadModalOpen(false));
+  });
+
+  leadModal.addEventListener("click", (event) => {
+    if (modalDialog && !modalDialog.contains(event.target)) {
+      setLeadModalOpen(false);
+    }
+  });
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && leadModal.classList.contains("is-open")) {
+      setLeadModalOpen(false);
+    }
+  });
+}
+
 const attachLeadHandler = (formId, feedbackId, buildMessage) => {
   const form = document.getElementById(formId);
   const feedback = document.getElementById(feedbackId);
@@ -59,16 +109,7 @@ const attachLeadHandler = (formId, feedbackId, buildMessage) => {
   });
 };
 
-attachLeadHandler("hero-form", "hero-form-feedback", (formData) => {
-  const fullName = formData.get("full-name");
-  const firstName = typeof fullName === "string" ? fullName.trim().split(/\s+/)[0] : "";
-
-  return firstName
-    ? `${firstName}, спасибо. Мы получили заявку и скоро свяжемся с вами.`
-    : "Спасибо. Мы получили заявку и скоро свяжемся с вами.";
-});
-
-attachLeadHandler("lead-form", "form-feedback", (formData) => {
+attachLeadHandler("modal-form", "modal-form-feedback", (formData) => {
   const fullName = formData.get("full-name");
   const firstName = typeof fullName === "string" ? fullName.trim().split(/\s+/)[0] : "";
 
@@ -136,11 +177,27 @@ if (swipeIndicators.length > 0) {
     }
 
     const cards = Array.from(scroller.children);
+    const prevButton = document.createElement("button");
+    const nextButton = document.createElement("button");
+
+    prevButton.className = "swipe-arrow swipe-arrow-prev";
+    prevButton.type = "button";
+    prevButton.setAttribute("aria-label", "Показать предыдущую карточку");
+    prevButton.innerHTML = "<span aria-hidden=\"true\">‹</span>";
+
+    nextButton.className = "swipe-arrow swipe-arrow-next";
+    nextButton.type = "button";
+    nextButton.setAttribute("aria-label", "Показать следующую карточку");
+    nextButton.innerHTML = "<span aria-hidden=\"true\">›</span>";
+
+    indicator.prepend(prevButton);
+    indicator.append(nextButton);
+
+    let activeIndex = 0;
 
     const setActiveDot = () => {
       const scrollerBox = scroller.getBoundingClientRect();
       const snapLine = scrollerBox.left + 1;
-      let activeIndex = 0;
       let shortestDistance = Number.POSITIVE_INFINITY;
 
       cards.forEach((card, index) => {
@@ -156,23 +213,33 @@ if (swipeIndicators.length > 0) {
       dots.forEach((dot, index) => {
         dot.classList.toggle("is-active", index === activeIndex);
       });
+
+      prevButton.disabled = activeIndex === 0;
+      nextButton.disabled = activeIndex === cards.length - 1;
+    };
+
+    const scrollToCard = (index) => {
+      const targetCard = cards[index];
+
+      if (!targetCard) {
+        return;
+      }
+
+      targetCard.scrollIntoView({
+        behavior: "smooth",
+        block: "nearest",
+        inline: "start",
+      });
     };
 
     dots.forEach((dot, index) => {
       dot.addEventListener("click", () => {
-        const targetCard = cards[index];
-
-        if (!targetCard) {
-          return;
-        }
-
-        targetCard.scrollIntoView({
-          behavior: "smooth",
-          block: "nearest",
-          inline: "start",
-        });
+        scrollToCard(index);
       });
     });
+
+    prevButton.addEventListener("click", () => scrollToCard(Math.max(activeIndex - 1, 0)));
+    nextButton.addEventListener("click", () => scrollToCard(Math.min(activeIndex + 1, cards.length - 1)));
 
     scroller.addEventListener("scroll", () => {
       window.requestAnimationFrame(setActiveDot);
